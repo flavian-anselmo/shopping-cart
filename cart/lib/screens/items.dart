@@ -43,7 +43,7 @@ class _ItemsToCartState extends State<ItemsToCart> {
                   onPressed: () {
                     //add the item to the cart
                     //the cart is the checkout screem
-                    Provider.of<CartModel>(context, listen: true)
+                    Provider.of<CartModel>(context, listen: false)
                         .addToCart(Items.cartItems[index]);
                   },
                   child: Text('add to cart'),
