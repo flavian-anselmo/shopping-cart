@@ -1,5 +1,7 @@
+import 'package:cart/provider/provider.dart';
 import 'package:cart/screens/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemsToCart extends StatefulWidget {
   ItemsToCart({Key? key}) : super(key: key);
@@ -23,14 +25,33 @@ class _ItemsToCartState extends State<ItemsToCart> {
             ),
             onTap: () {
               //GO TO THE CHECK OUT SCREEN
-              //display the items added to the cart 
+              //display the items added to the cart
               Navigator.pushNamed(context, CartAdded.id);
             },
           ),
         ],
       ),
       body: SafeArea(
-        child: ListView(),
+        child: ListView.builder(
+          itemCount: Items.cartItems.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+                child: Row(
+              children: [
+                Text(Items.cartItems[index]),
+                TextButton(
+                  onPressed: () {
+                    //add the item to the cart
+                    //the cart is the checkout screem
+                    Provider.of<CartModel>(context, listen: true)
+                        .addToCart(Items.cartItems[index]);
+                  },
+                  child: Text('add to cart'),
+                )
+              ],
+            ));
+          },
+        ),
       ),
     );
   }

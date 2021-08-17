@@ -1,3 +1,4 @@
+import 'package:cart/provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class CartAdded extends StatefulWidget {
@@ -16,7 +17,14 @@ class _CartAddedState extends State<CartAdded> {
         title: Text('data'),
       ),
       body: SafeArea(
-        child: Container(),
+        child: ListView.builder(
+          itemCount: CartModel.cart.length,
+          itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: Text(CartModel.cart[index]),
+          );
+         },
+        ),
       ),
     );
   }

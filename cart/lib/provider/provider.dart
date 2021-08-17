@@ -1,23 +1,38 @@
 import 'package:flutter/widgets.dart';
 
+class Items {
+  static List<String> cartItems = [
+    'MacBook',
+    'Lenovo',
+    'Dell',
+    'Helwet packard'
+  ];
+  static List getListOfItems() {
+    return cartItems;
+    //return the existing list of the items in the items screen
+    //this are the items that the user will click to add to the
+    //list of items in the cart
+  }
+}
+
 class CartModel extends ChangeNotifier {
-  List<String> cartItems = [];
+  static List cart = [];
   //method to add items to the cart
   void addToCart(String item) {
-    cartItems.add(item);
+    cart.add(item);
     //allow the user to add items in the cart
     notifyListeners();
   }
 
   //method to delete item form the cart
   void deleteFromCart(String item) {
-    cartItems.remove(item);
+    cart.remove(item);
     //allow the user to remove items from the cart
     notifyListeners();
   }
 
   List getCartItems() {
-    return cartItems;
+    return cart;
     //return all the items that are added to the cart
   }
 }
