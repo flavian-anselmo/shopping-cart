@@ -25,8 +25,8 @@ class CartModel extends ChangeNotifier {
   }
 
   //method to delete item form the cart
-  void deleteFromCart(String item) {
-    cart.remove(item);
+  void deleteFromCart(var item) {
+    cart.clear();
     //allow the user to remove items from the cart
     notifyListeners();
   }

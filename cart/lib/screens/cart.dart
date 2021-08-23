@@ -15,15 +15,42 @@ class _CartAddedState extends State<CartAdded> {
     return Scaffold(
       appBar: AppBar(
         title: Text('data'),
+        actions: [
+          TextButton(
+              onPressed: () {
+                //update the ui in real time
+                // Provider.of(context, listen: false)<CartModel>()
+                //     .deleteFromCart(CartModel.cart);
+
+                setState(() {
+                  CartModel.cart.clear();
+                });
+                // Navigator.pushNamed(context, ItemsToCart.id);
+              },
+              child: Text('clear')),
+        ],
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: CartModel.cart.length,
-          itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Text(CartModel.cart[index]),
-          );
-         },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView.builder(
+            itemCount: CartModel.cart.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                  child: ListTile(
+                leading: Text(CartModel.cart[index]),
+                trailing: TextButton(
+                  onPressed: () {
+                    //remove the items from the cart
+                    setState(() {
+                      CartModel.cart.removeAt(index);
+                    });
+                  },
+                  child: Text('Delete'),
+                ),
+              ));
+            },
+          ),
         ),
       ),
     );
